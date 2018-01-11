@@ -51,7 +51,7 @@
     <transition-group class="shop" name="list-complete" tag="div" >
         <div class="shop__item" v-bind:key="product.name" v-for="product in products">
           <img :src="$remoteAddress + product.preview"  alt="">
-          <h3>{{product.name}}</h3>
+          <router-link :to="{path: `shop/${product._id}`}">{{product.name}}</router-link>
           <p>{{product.category_name}}</p>
         </div>
         <div class="shop__item help" v-bind:key="1"></div>

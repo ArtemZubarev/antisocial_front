@@ -30,15 +30,15 @@
 
 <template>
   <div id="app" >
-    <!--<admin-header v-if="$route.path == '/admin'"/>-->
-    <!--<main-header v-else @switchSidebar="sidebar_active = !sidebar_active"/>-->
-    <router-view/>
-    <!--<div class="wrap">-->
-      <!--<div class="content" :class="{ without_margin:sidebar_active }">-->
-        <!--<router-view/>-->
-      <!--</div>-->
-      <!--<sidebar v-if="$route.path !== '/admin'" :sidebar_active="sidebar_active"/>-->
-    <!--</div>-->
+    <admin-header v-if="$route.path == '/admin'"/>
+    <main-header v-else @switchSidebar="sidebar_active = !sidebar_active"/>
+    <!--<router-view/>-->
+    <div class="wrap">
+      <div class="content" :class="{ without_margin:sidebar_active }">
+        <router-view/>
+      </div>
+      <sidebar v-if="$route.path !== '/admin'" :sidebar_active="sidebar_active"/>
+    </div>
   </div>
 </template>
 
