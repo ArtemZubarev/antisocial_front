@@ -24,6 +24,7 @@
   .shop__item h3 {
     text-transform: uppercase;
     font-size: 12px;
+    margin-top: 0;
   }
   .shop__item p {
     font-size: 10px;
@@ -32,10 +33,9 @@
     width: 100%;
   }
 
-  .list-complete-enter, .list-complete-leave-to
-    /* .list-complete-leave-active до версии 2.1.8 */ {
+  .list-complete-enter, .list-complete-leave {
     opacity: 0;
-    transform: translateY(5px);
+    transform: translateY(50px);
   }
 
   @media (max-width: 760px) {
@@ -47,12 +47,17 @@
 
 <template>
   <div>
-    <h1>Магазин</h1>
-    <transition-group class="shop" name="list-complete" tag="div" >
+    <transition-group class="shop"
+                      name="list-complete"
+                      tag="div"
+                      v-if="productsListActive">
         <div class="shop__item" v-bind:key="product.name" v-for="product in products">
-          <img :src="$remoteAddress + product.preview"  alt="">
-          <router-link :to="{path: `shop/${product._id}`}">{{product.name}}</router-link>
-          <p>{{product.category_name}}</p>
+          <router-link :to="{path: `shop/${product._id}`}">
+            <img :src="$remoteAddress + product.preview"  alt="">
+            <h3>{{product.name}}</h3>
+            <p>{{product.category_name}}</p>
+          </router-link>
+
         </div>
         <div class="shop__item help" v-bind:key="1"></div>
         <div class="shop__item help" v-bind:key="2"></div>
@@ -67,7 +72,8 @@
     name: 'Shop',
     data: function () {
       return {
-        products: []
+        products: [],
+        productsListActive: true
       }
     },
     methods: {
@@ -85,6 +91,10 @@
     },
     mounted: function () {
       this.loadProjects()
+    },
+    beforeRouteLeave (from, to, next) {
+      console.log(1)
+      next()
     }
   }
 </script>

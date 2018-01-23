@@ -13,6 +13,14 @@ Vue.http.options.root = urlAddress.baseUrl + '/api/'
 Vue.prototype.$remoteAddress = urlAddress.baseUrl
 Vue.config.productionTip = false
 
+// router.beforeEnter((to, from, next) => {
+//   function func () {
+//     console.log('Привет')
+//     next()
+//   }
+//   setTimeout(func, 500)
+// })
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

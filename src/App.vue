@@ -4,6 +4,16 @@
     text-transform: uppercase;
     font-weight: lighter;
   }
+  body {
+    margin: 0;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  a:visited {
+    color: inherit;
+  }
   #app {
     color: #2c3e50;
     min-height: 100vh;
@@ -25,6 +35,14 @@
   .content.without_margin {
     margin: 50px 0 0 0
   }
+  .slide_head-enter {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  .slide_head-leave-to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 
 </style>
 
@@ -37,7 +55,7 @@
       <div class="content" :class="{ without_margin:sidebar_active }">
         <router-view/>
       </div>
-      <sidebar v-if="$route.path !== '/admin'" :sidebar_active="sidebar_active"/>
+      <!--<sidebar v-if="$route.path !== '/admin'" :sidebar_active="sidebar_active"/>-->
     </div>
   </div>
 </template>
@@ -47,7 +65,7 @@
     name: 'App',
     data: function () {
       return {
-        sidebar_active: true
+        sidebar_active: false
       }
     },
     methods: {
